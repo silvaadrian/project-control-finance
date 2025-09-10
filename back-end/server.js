@@ -3,13 +3,16 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
-const expenseRoutes = require("./src/routes/expenseRoutes");
-const revenueRoutes = require("./src/routes/revenueRoutes");
-const authRoutes = require("./src/routes/authRoutes");
-const dashboardRoutes = require("./src/routes/dashboardRoutes");
-const debtRoutes = require("./src/routes/debtRoutes");
+const expenseRoutes = require("./routes/expenseRoutes");
+const revenueRoutes = require("./routes/revenueRoutes");
+const authRoutes = require("./routes/authRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const debtRoutes = require("./routes/debtRoutes");
 
-dotenv.config();
+// Condicional para carregar o .env apenas em ambiente de desenvolvimento
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 const app = express();
 app.use(express.json());
