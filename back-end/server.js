@@ -1,23 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const cors = require("cors"); // Importe o pacote cors
+const cors = require("cors");
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swagger');
-const expenseRoutes = require("./routes/expenseRoutes");
-const revenueRoutes = require("./routes/revenueRoutes");
-const authRoutes = require("./routes/authRoutes");
-const dashboardRoutes = require("./routes/dashboardRoutes");
-const debtRoutes = require("./routes/debtRoutes");
+const swaggerSpec = require('./src/swagger'); /
+const expenseRoutes = require("./src/routes/expenseRoutes"); 
+const revenueRoutes = require("./src/routes/revenueRoutes"); 
+const authRoutes = require("./src/routes/authRoutes"); 
+const dashboardRoutes = require("./src/routes/dashboardRoutes"); 
+const debtRoutes = require("./src/routes/debtRoutes"); 
 
-// Condicional para carregar o .env apenas em ambiente de desenvolvimento
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Use o middleware cors aqui
+app.use(cors());
 
 app.use("/api", expenseRoutes);
 app.use("/api", revenueRoutes);
